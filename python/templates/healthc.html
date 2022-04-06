@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>HealthCondition</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">HOSP</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <li class="nav-item">
+                <a class="nav-link"  href="/patients">Patients</a>
+              </li>
+            
+              
+                        
+              <li class="nav-item">
+                <a class="nav-link"  href="/addnew">Add New Patient</a>
+              </li>
+
+              
+              
+              
+            </ul>
+
+                   
+
+            <li class="d-flex">
+                <a class="btn btn-outline-danger"  href="/">Logout</a>
+                
+              
+            </li>
+          </div>
+        </div>
+      </nav>
+
+
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#" onclick="gotoPersonal()">Personal info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#" onclick="gotoHealthCondition()">Health Condition</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="gotoHealthReports()">Health reports</a>
+        </li>
+        
+      </ul>
+    
+   <div class="container mt-5">
+
+
+
+    <h5> ||UPLOAD HEALTH CONDITION HERE||</h5>
+    <h5>-----------------------------------------------------------------</h5>
+    <br>
+
+      
+      <form action="/updatehc" method="POST">
+        
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">HEALTH UPDATE</label>
+          <textarea class="form-control" name="health" id="health"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="validationDefault05">DATE</label>
+          <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+
+        <input type="hidden" name="pid" id="pid">
+        
+        <button type="submit" class="btn btn-primary">Submit</button></a>
+      </form>
+
+
+    </div>   
+
+    <br> 
+    <h5>---------------------------------------------------------------------------------------------------------------------------------------------------------------------</h5>
+
+    
+    <div class="container mt-5">
+
+      <h5> ||ALL HEALTH CONDITION ENTRIES||</h5>
+      <h5>-----------------------------------------------------------------</h5>
+      <br>
+
+
+    
+    <ul class="list-group">
+          
+          
+      {% for post in query %}  
+      <li class="list-group-item"> DATE        -{{post.date}}</li>
+      <li class="list-group-item">PATIENT HEALTH         -{{post.health}}</li>
+      
+      <h5>-----------------------------------------------------------------</h5>
+      <br>
+
+      
+      
+      
+     
+    </ul>
+    {% endfor %}
+
+  </div> 
+</div>     
+    
+
+      
+      
+
+
+
+
+
+
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    var id=params.get('id');
+    document.getElementById("pid").value=id;
+
+    
+    
+  </script>
+
+
+
+
+
+
+
+      <script>
+        function gotoHealthReports(){
+          const params = new URLSearchParams(window.location.search);
+          var id=params.get('id');
+          console.log(id);
+          window.location.href = '/reports?id='+id;
+  
+  
+        }
+  
+         
+      </script>
+  
+      <script>
+        function gotoPersonal(){
+          const params = new URLSearchParams(window.location.search);
+          var id=params.get('id');
+          console.log(id);
+          window.location.href = '/personal?id='+id;
+  
+  
+        }
+  
+         
+      </script>
+  
+      <script>
+        function gotoHealthCondition(){
+          const params = new URLSearchParams(window.location.search);
+          var id=params.get('id');
+          console.log(id);
+          window.location.href = '/healthc?id='+id;
+  
+  
+        }
+  
+         
+      </script>
+
+       
+      
+
+    
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+   
+  </body>
+</html>
+
+    
