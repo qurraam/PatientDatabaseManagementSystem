@@ -97,7 +97,7 @@ class Healthc(UserMixin,db.Model):
 
 
 
-#here we will pass endpoints and rum the fun
+#here we will pass endpoints and rum the FUNCTION
 
 @app.route("/")
 def hello_world():
